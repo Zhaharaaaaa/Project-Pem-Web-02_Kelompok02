@@ -2,20 +2,28 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Ruangan extends Model
 {
-    protected $table = 'ruangan';
+    use HasFactory;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'ruangan'; // <-- TAMBAHKAN BARIS INI
 
     protected $fillable = [
-        'kode',
-        'nama',
-        'status',
+        'nama_ruangan',
+        'deskripsi',
+        'fasilitas',
     ];
 
-    public function fasilitas()
+    public function peminjaman()
     {
-        return $this->belongsToMany(Fasilitas::class);
+        return $this->hasMany(Peminjaman::class);
     }
 }

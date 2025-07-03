@@ -2,8 +2,11 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\PeminjamanBulanIniWidget;
+use App\Filament\Widgets\PeminjamanChart;
+use App\Filament\Widgets\PeminjamanStatusChart;
+use App\Filament\Widgets\RuanganChart;
 use Filament\Http\Middleware\Authenticate;
-use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
@@ -15,10 +18,9 @@ use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-
-use App\Filament\Widgets\PeminjamanBulanIniWidget;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -39,7 +41,14 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                \App\Filament\Widgets\PeminjamanBulanIniWidget::class,
+                // Widget yang sudah ada
+                PeminjamanBulanIniWidget::class,
+
+                // Widget chart baru
+
+                PeminjamanStatusChart::class,
+                RuanganChart::class,
+                PeminjamanChart::class,
             ])
             ->middleware([
                 EncryptCookies::class,
