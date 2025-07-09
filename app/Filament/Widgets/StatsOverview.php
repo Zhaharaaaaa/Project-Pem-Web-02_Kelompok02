@@ -26,7 +26,7 @@ class StatsOverview extends BaseWidget
                 ->description(Pemesanan::count())
                 ->color('warning')
                 ->icon('heroicon-o-clipboard-document-list'),
-            Card::make('Total Fasilitas', Fasilitas::whereDate('created_at', now())->count())
+            Card::make('Total Fasilitas', Fasilitas::count())
                 ->description(Fasilitas::count())
                 ->color('danger')
                 ->icon('heroicon-o-building-library'),  
